@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,41 +48,147 @@
                 transform: translateY(0);
             }
         }
+        /* Theme Styles */
+        [data-theme="light"] {
+            --bg-color: #ffffff;
+            --text-color: #374151;
+            --card-bg: #ffffff;
+            --header-bg: linear-gradient(90deg, #1e40af, #0d9488);
+            --nav-bg: #ffffff;
+            --footer-bg: #1f2937;
+            --nav-text: #374151;
+            --nav-hover: #0d9488;
+            --contact-icon: #374151;
+            --contact-icon-hover: #0d9488;
+        }
+        [data-theme="dark"] {
+            --bg-color: #1f2937;
+            --text-color: #e5e7eb;
+            --card-bg: #374151;
+            --header-bg: linear-gradient(90deg, #1e3a8a, #0f766e);
+            --nav-bg: #374151;
+            --footer-bg: #111827;
+            --nav-text: #e5e7eb;
+            --nav-hover: #2dd4bf;
+            --contact-icon: #e5e7eb;
+            --contact-icon-hover: #2dd4bf;
+        }
+        [data-theme="teal"] {
+            --bg-color: #e6fffa;
+            --text-color: #0f766e;
+            --card-bg: #ccfbf1;
+            --header-bg: linear-gradient(90deg, #0d9488, #14b8a6);
+            --nav-bg: #ccfbf1;
+            --footer-bg: #0f766e;
+            --nav-text: #0f766e;
+            --nav-hover: #1e40af;
+            --contact-icon: #0f766e;
+            --contact-icon-hover: #1e40af;
+        }
+        [data-theme="blue"] {
+            --bg-color: #eff6ff;
+            --text-color: #1e40af;
+            --card-bg: #dbeafe;
+            --header-bg: linear-gradient(90deg, #1e40af, #3b82f6);
+            --nav-bg: #dbeafe;
+            --footer-bg: #1e40af;
+            --nav-text: #1e40af;
+            --nav-hover: #0d9488;
+            --contact-icon: #1e40af;
+            --contact-icon-hover: #0d9488;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        header {
+            background: var(--header-bg);
+        }
+        nav {
+            background-color: var(--nav-bg);
+        }
+        nav a, nav button {
+            color: var(--nav-text);
+        }
+        nav a:hover, nav button:hover {
+            color: var(--nav-hover);
+        }
+        footer {
+            background-color: var(--footer-bg);
+        }
+        .card {
+            background-color: var(--card-bg);
+        }
+        .contact-icons svg {
+            color: var(--contact-icon);
+            transition: color 0.2s ease;
+        }
+        .contact-icons a:hover svg {
+            color: var(--contact-icon-hover);
+        }
+        /* Back-to-Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #0d9488;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 30;
+        }
+        #back-to-top.visible {
+            opacity: 1;
+        }
+        #back-to-top:hover {
+            background-color: #14b8a6;
+        }
     </style>
 </head>
-<body class="bg-white scroll-smooth">
-    <header class="gradient-header text-white text-center py-16">
+<body class="scroll-smooth">
+    <header class="text-white text-center py-16">
         <h1 class="text-4xl md:text-5xl font-bold">Bhart Verma</h1>
         <p class="mt-2 text-lg md:text-xl">Cybersecurity Specialist | Technical Support Expert</p>
         <a href="https://in.linkedin.com/in/bhartverma" target="_blank" class="mt-4 inline-block bg-white text-teal-800 font-semibold py-2 px-4 rounded-lg hover:bg-teal-100 transition">Get in Touch</a>
     </header>
 
-    <nav class="bg-white shadow sticky top-0 z-10">
+    <nav class="shadow sticky top-0 z-10">
         <div class="max-w-6xl mx-auto px-4 py-4 flex justify-center space-x-6 md:space-x-10">
-            <a href="#about" class="text-gray-700 hover:text-teal-600 font-semibold">About</a>
-            <a href="#skills" class="text-gray-700 hover:text-teal-600 font-semibold">Skills</a>
-            <a href="#experience" class="text-gray-700 hover:text-teal-600 font-semibold">Experience</a>
-            <a href="#certifications" class="text-gray-700 hover:text-teal-600 font-semibold">Certifications</a>
+            <a href="#about" class="font-semibold">About</a>
+            <a href="#skills" class="font-semibold">Skills</a>
+            <a href="#experience" class="font-semibold">Experience</a>
+            <a href="#certifications" class="font-semibold">Certifications</a>
             <div class="relative dropdown">
-                <button class="text-gray-700 hover:text-teal-600 font-semibold" onclick="toggleDropdown(event)">Resources</button>
+                <button class="font-semibold" onclick="toggleDropdown(event)">Resources</button>
                 <div class="dropdown-menu bg-white shadow-lg rounded-md mt-0 py-2 w-48">
                     <a href="https://github.com/Bhart-Verma/ceh-notes/blob/main/ceh-notes.md" target="_blank" class="block px-4 py-2 text-gray-700 hover:bg-teal-100 hover:text-teal-600">CEH Notes</a>
                 </div>
             </div>
-            <a href="#contact" class="text-gray-700 hover:text-teal-600 font-semibold">Contact</a>
+            <a href="#contact" class="font-semibold">Contact</a>
+            <button id="theme-toggle" class="hover:text-teal-600" aria-label="Toggle theme">
+                <svg id="theme-icon" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                </svg>
+            </button>
         </div>
     </nav>
 
     <main class="max-w-6xl mx-auto px-4 py-12">
         <section id="about" class="mb-16">
-            <h2 class="text-3xl font-bold text-gray-800 border-b-2 border-teal-600 pb-2 mb-6">About Me</h2>
-            <p class="text-gray-600 leading-relaxed">
+            <h2 class="text-3xl font-bold border-b-2 border-teal-600 pb-2 mb-6">About Me</h2>
+            <p class="leading-relaxed">
                 As a tech-savvy professional with a passion for cybersecurity, I bring hands-on IT expertise and extensive experience in providing top-notch technical support. With a focus on resolving complex issues and driving business success, I specialize in malware investigation, vulnerability assessment, and client communication to ensure secure and efficient systems.
             </p>
         </section>
 
         <section id="skills" class="mb-16">
-            <h2 class="text-3xl font-bold text-gray-800 border-b-2 border-teal-600 pb-2 mb-6">Skills</h2>
+            <h2 class="text-3xl font-bold border-b-2 border-teal-600 pb-2 mb-6">Skills</h2>
             <div class="flex flex-wrap gap-3">
                 <span class="bg-teal-100 text-teal-800 font-medium px-4 py-2 rounded-full">Cybersecurity</span>
                 <span class="bg-teal-100 text-teal-800 font-medium px-4 py-2 rounded-full">Technical Support</span>
@@ -98,40 +204,40 @@
         </section>
 
         <section id="experience" class="mb-16">
-            <h2 class="text-3xl font-bold text-gray-800 border-b-2 border-teal-600 pb-2 mb-6">Experience & Projects</h2>
+            <h2 class="text-3xl font-bold border-b-2 border-teal-600 pb-2 mb-6">Experience & Projects</h2>
             <div class="grid gap-6 md:grid-cols-2">
-                <div class="card bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold text-gray-800">Cybersecurity Analyst</h3>
+                <div class="card p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold">Cybersecurity Analyst</h3>
                     <p class="text-gray-500">Apr 2025 - Present</p>
-                    <p class="text-gray-600 mt-2">
+                    <p class="mt-2">
                         Conducting threat analysis, vulnerability assessments, and incident response to enhance organizational security posture. Leveraging SIEM tools and pentesting frameworks to identify and mitigate risks.
                     </p>
                 </div>
-                <div class="card bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold text-gray-800">Technical Support Specialist</h3>
+                <div class="card p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold">Technical Support Specialist</h3>
                     <p class="text-gray-500">Redblink Technologies, Mohali | Oct 2016 - Dec 2024</p>
-                    <p class="text-gray-600 mt-2">
+                    <p class="mt-2">
                         Investigated malware on WordPress sites using Wordfence, Sucuri, and VirusTotal. Conducted vulnerability scans with OpenVAS and Nessus, creating detailed remediation reports. Provided client support via Zendesk, resolving software and security issues.
                     </p>
                 </div>
-                <div class="card bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold text-gray-800">TINXSYS Support Engineer L2</h3>
+                <div class="card p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold">TINXSYS Support Engineer L2</h3>
                     <p class="text-gray-500">Vayam Info Solutions Pvt Ltd, Panchkula | Apr 2015 - Aug 2016</p>
-                    <p class="text-gray-600 mt-2">
+                    <p class="mt-2">
                         Streamlined data migration to TINXSYS servers, ensuring data integrity. Managed 500+ endpoints and provided end-user support via Zendesk, optimizing server performance and stability.
                     </p>
                 </div>
-                <div class="card bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold text-gray-800">Hardware & Software Engineer</h3>
+                <div class="card p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold">Hardware & Software Engineer</h3>
                     <p class="text-gray-500">Comvia Computers, Ludhiana | Sep 2010 - May 2014</p>
-                    <p class="text-gray-600 mt-2">
+                    <p class="mt-2">
                         Managed hardware/software installations and data recovery across 550+ assets. Provided on-site and remote support for 200+ users, resolving complex issues and ensuring system security with WSUS and Symantec updates.
                     </p>
                 </div>
-                <div class="card bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold text-gray-800">Cybersecurity Intern</h3>
+                <div class="card p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold">Cybersecurity Intern</h3>
                     <p class="text-gray-500">Center for Cyber Security Studies & Research | Jul 2024 - Oct 2024</p>
-                    <p class="text-gray-600 mt-2">
+                    <p class="mt-2">
                         Gained hands-on experience in cybersecurity practices, contributing to threat analysis and vulnerability assessments during internship.
                     </p>
                 </div>
@@ -139,8 +245,8 @@
         </section>
 
         <section id="certifications" class="mb-16">
-            <h2 class="text-3xl font-bold text-gray-800 border-b-2 border-teal-600 pb-2 mb-6">Certifications</h2>
-            <ul class="list-disc pl-6 text-gray-600 space-y-2">
+            <h2 class="text-3xl font-bold border-b-2 border-teal-600 pb-2 mb-6">Certifications</h2>
+            <ul class="list-disc pl-6 space-y-2">
                 <li>CompTIA A+</li>
                 <li>CompTIA Security+</li>
                 <li>Certified Ethical Hacker (v13)</li>
@@ -154,27 +260,40 @@
         </section>
 
         <section id="contact" class="mb-16">
-            <h2 class="text-3xl font-bold text-gray-800 border-b-2 border-teal-600 pb-2 mb-6">Contact</h2>
+            <h2 class="text-3xl font-bold border-b-2 border-teal-600 pb-2 mb-6">Contact</h2>
             <div class="space-y-4">
-                <p class="text-gray-600">
-                    Location: Mohali, Punjab
-                </p>
-                <p class="text-gray-600">
-                    <a href="https://in.linkedin.com/in/bhartverma" target="_blank" class="inline-flex items-center text-teal-600 hover:underline">
-                        <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <p>Location: Mohali, Punjab</p>
+                <div class="contact-icons flex space-x-4">
+                    <a href="https://in.linkedin.com/in/bhartverma" target="_blank" aria-label="LinkedIn Profile">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-1.337-.955-2.475-2.229-2.475-1.274 0-2.229 1.138-2.229 2.475v5.604h-3v-11h3v1.534c.47-.725 1.363-1.534 2.771-1.534 2.025 0 3.688 1.775 3.688 3.956v7.044z"/>
                         </svg>
-                        LinkedIn Profile
                     </a>
-                </p>
+                    <a href="https://www.credly.com/users/bhartverma" target="_blank" aria-label="Credly Profile">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
+                        </svg>
+                    </a>
+                    <a href="https://tryhackme.com/p/BhartVerma" target="_blank" aria-label="TryHackMe Profile">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-2h2v2zm0-4h-2V7h2v6zm4 4h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
             <a href="assets/CV.pdf" download class="mt-4 inline-block bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-teal-700 transition">Download CV</a>
         </section>
     </main>
 
-    <footer class="bg-gray-800 text-white text-center py-6">
+    <footer class="text-white text-center py-6">
         <p>© 2025 Bhart Verma. All rights reserved.</p>
     </footer>
+
+    <button id="back-to-top" aria-label="Back to top">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+        </svg>
+    </button>
 
     <script>
         // Smooth scrolling for navigation links
@@ -205,6 +324,47 @@
                     dropdown.classList.remove('active');
                 }
             }
+        });
+
+        // Theme Toggle
+        const themes = ['light', 'dark', 'teal', 'blue'];
+        const themeIcons = {
+            light: '<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>',
+            dark: '<path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>',
+            teal: '<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>',
+            blue: '<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>'
+        };
+        const themeButton = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            themeIcon.innerHTML = themeIcons[theme];
+            localStorage.setItem('theme', theme);
+        }
+
+        themeButton.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const nextTheme = themes[(themes.indexOf(currentTheme) + 1) % themes.length];
+            setTheme(nextTheme);
+        });
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        setTheme(savedTheme);
+
+        // Back-to-Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 200) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
 </body>
