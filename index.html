@@ -23,26 +23,34 @@
         .gradient-header {
             background: linear-gradient(90deg, #1e40af, #0d9488);
         }
-        .dropdown:hover .dropdown-menu {
+        .dropdown:hover .dropdown-menu,
+        .tools-dropdown:hover .tools-menu {
             display: block;
             opacity: 1;
             transform: translateY(0);
         }
-        .dropdown-menu {
+        .dropdown-menu,
+        .tools-menu {
             display: none;
             transition: opacity 0.2s ease, transform 0.2s ease;
             opacity: 0;
             transform: translateY(-10px);
             position: absolute;
+            z-index: 30;
+        }
+        .tools-menu {
             top: 100%;
             left: 0;
-            z-index: 20;
+            min-width: 200px;
+            background-color: transparent;
         }
         @media (max-width: 768px) {
-            .dropdown .dropdown-menu {
+            .dropdown .dropdown-menu,
+            .tools-dropdown .tools-menu {
                 display: none;
             }
-            .dropdown.active .dropdown-menu {
+            .dropdown.active .dropdown-menu,
+            .tools-dropdown.active .tools-menu {
                 display: block;
                 opacity: 1;
                 transform: translateY(0);
@@ -162,12 +170,16 @@
         <div class="max-w-6xl mx-auto px-4 py-4 flex justify-center space-x-6 md:space-x-10">
             <a href="#about" class="font-semibold">About</a>
             <a href="#skills" class="font-semibold">Skills</a>
+            <a href="#tools" class="font-semibold">Tools</a>
             <a href="#experience" class="font-semibold">Experience</a>
             <a href="#certifications" class="font-semibold">Certifications</a>
             <div class="relative dropdown">
                 <button class="font-semibold" onclick="toggleDropdown(event)">Resources</button>
                 <div class="dropdown-menu bg-white shadow-lg rounded-md mt-0 py-2 w-48">
                     <a href="https://github.com/Bhart-Verma/ceh-notes/blob/main/ceh-notes.md" target="_blank" class="block px-4 py-2 text-gray-700 hover:bg-teal-100 hover:text-teal-600">CEH Notes</a>
+                    <a href="https://www.revshells.com/" target="_blank" class="block px-4 py-2 text-gray-700 hover:bg-teal-100 hover:text-teal-600">Reverse Shell Generator</a>
+                    <a href="https://acorzo1983.github.io/HashCatCG/" target="_blank" class="block px-4 py-2 text-gray-700 hover:bg-teal-100 hover:text-teal-600">HashCat Command Generator</a>
+                    <a href="https://acorzo1983.github.io/SQLMapCG/" target="_blank" class="block px-4 py-2 text-gray-700 hover:bg-teal-100 hover:text-teal-600">SQLMap Command Generator</a>
                 </div>
             </div>
             <a href="#contact" class="font-semibold">Contact</a>
@@ -203,43 +215,145 @@
             </div>
         </section>
 
+        <section id="tools" class="mb-16">
+            <h2 class="text-3xl font-bold border-b-2 border-teal-600 pb-2 mb-6">Tools</h2>
+            <div class="flex flex-wrap gap-3">
+                <div class="relative tools-dropdown">
+                    <button class="bg-teal-100 text-teal-800 font-medium px-4 py-2 rounded-full">Frameworks</button>
+                    <div class="tools-menu shadow-lg rounded-md mt-0 p-3">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">NIST</span>
+                            <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">OWASP</span>
+                            <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">MITRE ATT&CK</span>
+                            <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Cyber Kill Chain</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative tools-dropdown">
+                    <button class="bg-teal-100 text-teal-800 font-medium px-4 py-2 rounded-full">Platforms</button>
+                    <div class="tools-menu shadow-lg rounded-md mt-0 p-3">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">MISP</span>
+                            <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">The Hive</span>
+                            <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Open CTI</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative tools-dropdown">
+                    <button class="bg-teal-100 text-teal-800 font-medium px-4 py-2 rounded-full">SIEM Tools</button>
+                    <div class="tools-menu shadow-lg rounded-md mt-0 p-3">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Splunk</span>
+                            <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Wazuh</span>
+                            <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">ELK Stack</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative tools-dropdown">
+                    <button class="bg-teal-100 text-teal-800 font-medium px-4 py-2 rounded-full">Network Tools</button>
+                    <div class="tools-menu shadow-lg rounded-md mt-0 p-3">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Snort</span>
+                            <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Nmap</span>
+                            <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Wireshark</span>
+                            <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">NetworkMiner</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative tools-dropdown">
+                    <button class="bg-teal-100 text-teal-800 font-medium px-4 py-2 rounded-full">Forensic Tools</button>
+                    <div class="tools-menu shadow-lg rounded-md mt-0 p-3">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Autopsy</span>
+                            <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Redline</span>
+                            <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Kape</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative tools-dropdown">
+                    <button class="bg-teal-100 text-teal-800 font-medium px-4 py-2 rounded-full">Pentesting Tools</button>
+                    <div class="tools-menu shadow-lg rounded-md mt-0 p-3">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Metasploit</span>
+                            <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">BurpSuite</span>
+                            <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">OWASP ZAP</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative tools-dropdown">
+                    <button class="bg-teal-100 text-teal-800 font-medium px-4 py-2 rounded-full">Vulnerability Scans</button>
+                    <div class="tools-menu shadow-lg rounded-md mt-0 p-3">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">OpenVAS</span>
+                            <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Nessus</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="experience" class="mb-16">
             <h2 class="text-3xl font-bold border-b-2 border-teal-600 pb-2 mb-6">Experience & Projects</h2>
             <div class="grid gap-6 md:grid-cols-2">
                 <div class="card p-6 rounded-lg shadow-md">
                     <h3 class="text-xl font-semibold">Cybersecurity Analyst</h3>
                     <p class="text-gray-500">Apr 2025 - Present</p>
-                    <p class="mt-2">
-                        Conducting threat analysis, vulnerability assessments, and incident response to enhance organizational security posture. Leveraging SIEM tools and pentesting frameworks to identify and mitigate risks.
-                    </p>
-                </div>
-                <div class="card p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold">Technical Support Specialist</h3>
-                    <p class="text-gray-500">Redblink Technologies, Mohali | Oct 2016 - Dec 2024</p>
-                    <p class="mt-2">
-                        Investigated malware on WordPress sites using Wordfence, Sucuri, and VirusTotal. Conducted vulnerability scans with OpenVAS and Nessus, creating detailed remediation reports. Provided client support via Zendesk, resolving software and security issues.
-                    </p>
-                </div>
-                <div class="card p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold">TINXSYS Support Engineer L2</h3>
-                    <p class="text-gray-500">Vayam Info Solutions Pvt Ltd, Panchkula | Apr 2015 - Aug 2016</p>
-                    <p class="mt-2">
-                        Streamlined data migration to TINXSYS servers, ensuring data integrity. Managed 500+ endpoints and provided end-user support via Zendesk, optimizing server performance and stability.
-                    </p>
-                </div>
-                <div class="card p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold">Hardware & Software Engineer</h3>
-                    <p class="text-gray-500">Comvia Computers, Ludhiana | Sep 2010 - May 2014</p>
-                    <p class="mt-2">
-                        Managed hardware/software installations and data recovery across 550+ assets. Provided on-site and remote support for 200+ users, resolving complex issues and ensuring system security with WSUS and Symantec updates.
-                    </p>
+                    <p class="mt-2 font-semibold">Role & Responsibilities:</p>
+                    <ul class="list-disc pl-5 space-y-1 mt-1">
+                        <li>Conducted threat analysis and incident response to mitigate risks.</li>
+                        <li>Performed vulnerability assessments using OpenVAS and Nessus.</li>
+                        <li>Utilized SIEM tools (Splunk, Wazuh) for real-time monitoring.</li>
+                        <li>Executed penetration testing with Metasploit and BurpSuite.</li>
+                        <li>Developed security reports and communicated findings to stakeholders.</li>
+                    </ul>
                 </div>
                 <div class="card p-6 rounded-lg shadow-md">
                     <h3 class="text-xl font-semibold">Cybersecurity Intern</h3>
                     <p class="text-gray-500">Center for Cyber Security Studies & Research | Jul 2024 - Oct 2024</p>
-                    <p class="mt-2">
-                        Gained hands-on experience in cybersecurity practices, contributing to threat analysis and vulnerability assessments during internship.
-                    </p>
+                    <p class="mt-2 font-semibold">Role & Responsibilities:</p>
+                    <ul class="list-disc pl-5 space-y-1 mt-1">
+                        <li>Assisted in threat analysis and vulnerability assessments.</li>
+                        <li>Learned SIEM tools (Splunk, ELK Stack) for log analysis.</li>
+                        <li>Used forensic tools (Autopsy, Redline) for incident investigation.</li>
+                        <li>Contributed to security documentation and reports.</li>
+                        <li>Participated in training on MITRE ATT&CK and Cyber Kill Chain.</li>
+                    </ul>
+                </div>
+                <div class="card p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold">Technical Support Specialist</h3>
+                    <p class="text-gray-500">Redblink Technologies, Mohali | Oct 2016 - Dec 2024</p>
+                    <p class="mt-2 font-semibold">Role & Responsibilities:</p>
+                    <ul class="list-disc pl-5 space-y-1 mt-1">
+                        <li>Investigated malware on WordPress sites using Wordfence, Sucuri, VirusTotal.</li>
+                        <li>Conducted vulnerability scans with OpenVAS and Nessus.</li>
+                        <li>Provided client support via Zendesk, resolving software/security issues.</li>
+                        <li>Created remediation reports for security vulnerabilities.</li>
+                        <li>Trained clients on security best practices and tools.</li>
+                    </ul>
+                </div>
+                <div class="card p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold">TINXSYS Support Engineer L2</h3>
+                    <p class="text-gray-500">Vayam Info Solutions Pvt Ltd, Panchkula | Apr 2015 - Aug 2016</p>
+                    <p class="mt-2 font-semibold">Role & Responsibilities:</p>
+                    <ul class="list-disc pl-5 space-y-1 mt-1">
+                        <li>Managed data migration to TINXSYS servers, ensuring integrity.</li>
+                        <li>Supported 500+ endpoints with network troubleshooting.</li>
+                        <li>Used Wireshark and Nmap for network performance analysis.</li>
+                        <li>Provided end-user support via Zendesk, resolving technical issues.</li>
+                        <li>Optimized server stability and documented processes.</li>
+                    </ul>
+                </div>
+                <div class="card p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold">Hardware & Software Engineer</h3>
+                    <p class="text-gray-500">Comvia Computers, Ludhiana | Sep 2010 - May 2014</p>
+                    <p class="mt-2 font-semibold">Role & Responsibilities:</p>
+                    <ul class="list-disc pl-5 space-y-1 mt-1">
+                        <li>Managed hardware/software installations for 550+ assets.</li>
+                        <li>Performed data recovery and system troubleshooting.</li>
+                        <li>Ensured security with WSUS and Symantec updates.</li>
+                        <li>Provided on-site/remote support for 200+ users.</li>
+                        <li>Documented technical issues and solutions for future reference.</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -316,13 +430,34 @@
             }
         }
 
-        // Close dropdown when clicking outside (mobile only)
+        // Toggle tools dropdown on click for mobile/touch devices
+        document.querySelectorAll('.tools-dropdown button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if ('ontouchstart' in window || window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const dropdown = this.closest('.tools-dropdown');
+                    const isActive = dropdown.classList.contains('active');
+                    document.querySelectorAll('.tools-dropdown').forEach(d => d.classList.remove('active'));
+                    if (!isActive) {
+                        dropdown.classList.add('active');
+                    }
+                }
+            });
+        });
+
+        // Close dropdowns when clicking outside (mobile only)
         document.addEventListener('click', function(e) {
             if ('ontouchstart' in window || window.innerWidth <= 768) {
                 const dropdown = document.querySelector('.dropdown');
+                const toolsDropdowns = document.querySelectorAll('.tools-dropdown');
                 if (!dropdown.contains(e.target)) {
                     dropdown.classList.remove('active');
                 }
+                toolsDropdowns.forEach(d => {
+                    if (!d.contains(e.target)) {
+                        d.classList.remove('active');
+                    }
+                });
             }
         });
 
