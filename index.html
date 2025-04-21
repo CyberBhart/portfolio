@@ -41,8 +41,17 @@
         .tools-menu {
             top: 100%;
             left: 0;
-            min-width: 200px;
+            min-width: 280px;
             background-color: transparent;
+        }
+        .tools-menu .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 12px;
+        }
+        .tools-menu span {
+            text-align: center;
+            font-size: 0.875rem;
         }
         @media (max-width: 768px) {
             .dropdown .dropdown-menu,
@@ -54,6 +63,9 @@
                 display: block;
                 opacity: 1;
                 transform: translateY(0);
+            }
+            .tools-menu .grid {
+                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
             }
         }
         /* Theme Styles */
@@ -215,13 +227,13 @@
             </div>
         </section>
 
-        <section id="tools" class="mb-16">
+        <section id="tools" class="mb-24">
             <h2 class="text-3xl font-bold border-b-2 border-teal-600 pb-2 mb-6">Tools</h2>
             <div class="flex flex-wrap gap-3">
                 <div class="relative tools-dropdown">
                     <button class="bg-teal-100 text-teal-800 font-medium px-4 py-2 rounded-full">Frameworks</button>
                     <div class="tools-menu shadow-lg rounded-md mt-0 p-3">
-                        <div class="flex flex-wrap gap-2">
+                        <div class="grid">
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">NIST</span>
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">OWASP</span>
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">MITRE ATT&CK</span>
@@ -232,7 +244,7 @@
                 <div class="relative tools-dropdown">
                     <button class="bg-teal-100 text-teal-800 font-medium px-4 py-2 rounded-full">Platforms</button>
                     <div class="tools-menu shadow-lg rounded-md mt-0 p-3">
-                        <div class="flex flex-wrap gap-2">
+                        <div class="grid">
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">MISP</span>
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">The Hive</span>
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Open CTI</span>
@@ -242,7 +254,7 @@
                 <div class="relative tools-dropdown">
                     <button class="bg-teal-100 text-teal-800 font-medium px-4 py-2 rounded-full">SIEM Tools</button>
                     <div class="tools-menu shadow-lg rounded-md mt-0 p-3">
-                        <div class="flex flex-wrap gap-2">
+                        <div class="grid">
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Splunk</span>
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Wazuh</span>
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">ELK Stack</span>
@@ -252,7 +264,7 @@
                 <div class="relative tools-dropdown">
                     <button class="bg-teal-100 text-teal-800 font-medium px-4 py-2 rounded-full">Network Tools</button>
                     <div class="tools-menu shadow-lg rounded-md mt-0 p-3">
-                        <div class="flex flex-wrap gap-2">
+                        <div class="grid">
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Snort</span>
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Nmap</span>
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Wireshark</span>
@@ -263,7 +275,7 @@
                 <div class="relative tools-dropdown">
                     <button class="bg-teal-100 text-teal-800 font-medium px-4 py-2 rounded-full">Forensic Tools</button>
                     <div class="tools-menu shadow-lg rounded-md mt-0 p-3">
-                        <div class="flex flex-wrap gap-2">
+                        <div class="grid">
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Autopsy</span>
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Redline</span>
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Kape</span>
@@ -273,7 +285,7 @@
                 <div class="relative tools-dropdown">
                     <button class="bg-teal-100 text-teal-800 font-medium px-4 py-2 rounded-full">Pentesting Tools</button>
                     <div class="tools-menu shadow-lg rounded-md mt-0 p-3">
-                        <div class="flex flex-wrap gap-2">
+                        <div class="grid">
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Metasploit</span>
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">BurpSuite</span>
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">OWASP ZAP</span>
@@ -283,7 +295,7 @@
                 <div class="relative tools-dropdown">
                     <button class="bg-teal-100 text-teal-800 font-medium px-4 py-2 rounded-full">Vulnerability Scans</button>
                     <div class="tools-menu shadow-lg rounded-md mt-0 p-3">
-                        <div class="flex flex-wrap gap-2">
+                        <div class="grid">
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">OpenVAS</span>
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Nessus</span>
                         </div>
