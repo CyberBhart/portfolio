@@ -41,17 +41,27 @@
         .tools-menu {
             top: 100%;
             left: 0;
-            min-width: 280px;
-            background-color: transparent;
+            min-width: 300px;
+            background: transparent !important;
+            padding: 0;
         }
         .tools-menu .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
             gap: 12px;
+            padding: 8px;
         }
         .tools-menu span {
+            display: inline-block;
             text-align: center;
             font-size: 0.875rem;
+            background-color: #ccfbf1;
+            color: #0f766e;
+            font-weight: 500;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            white-space: nowrap;
         }
         @media (max-width: 768px) {
             .dropdown .dropdown-menu,
@@ -65,7 +75,7 @@
                 transform: translateY(0);
             }
             .tools-menu .grid {
-                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
             }
         }
         /* Theme Styles */
@@ -222,8 +232,6 @@
                 <span class="bg-teal-100 text-teal-800 font-medium px-4 py-2 rounded-full">AWS S3</span>
                 <span class="bg-teal-100 text-teal-800 font-medium px-4 py-2 rounded-full">Network Management</span>
                 <span class="bg-teal-100 text-teal-800 font-medium px-4 py-2 rounded-full">Data Recovery</span>
-                <span class="bg-teal-100 text-teal-800 font-medium px-4 py-2 rounded-full">SIEM Tools</span>
-                <span class="bg-teal-100 text-teal-800 font-medium px-4 py-2 rounded-full">Pentesting Tools</span>
             </div>
         </section>
 
@@ -232,7 +240,7 @@
             <div class="flex flex-wrap gap-3">
                 <div class="relative tools-dropdown">
                     <button class="bg-teal-100 text-teal-800 font-medium px-4 py-2 rounded-full">Frameworks</button>
-                    <div class="tools-menu shadow-lg rounded-md mt-0 p-3">
+                    <div class="tools-menu mt-0">
                         <div class="grid">
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">NIST</span>
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">OWASP</span>
@@ -243,7 +251,7 @@
                 </div>
                 <div class="relative tools-dropdown">
                     <button class="bg-teal-100 text-teal-800 font-medium px-4 py-2 rounded-full">Platforms</button>
-                    <div class="tools-menu shadow-lg rounded-md mt-0 p-3">
+                    <div class="tools-menu mt-0">
                         <div class="grid">
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">MISP</span>
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">The Hive</span>
@@ -253,7 +261,7 @@
                 </div>
                 <div class="relative tools-dropdown">
                     <button class="bg-teal-100 text-teal-800 font-medium px-4 py-2 rounded-full">SIEM Tools</button>
-                    <div class="tools-menu shadow-lg rounded-md mt-0 p-3">
+                    <div class="tools-menu mt-0">
                         <div class="grid">
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Splunk</span>
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Wazuh</span>
@@ -263,7 +271,7 @@
                 </div>
                 <div class="relative tools-dropdown">
                     <button class="bg-teal-100 text-teal-800 font-medium px-4 py-2 rounded-full">Network Tools</button>
-                    <div class="tools-menu shadow-lg rounded-md mt-0 p-3">
+                    <div class="tools-menu mt-0">
                         <div class="grid">
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Snort</span>
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Nmap</span>
@@ -274,7 +282,7 @@
                 </div>
                 <div class="relative tools-dropdown">
                     <button class="bg-teal-100 text-teal-800 font-medium px-4 py-2 rounded-full">Forensic Tools</button>
-                    <div class="tools-menu shadow-lg rounded-md mt-0 p-3">
+                    <div class="tools-menu mt-0">
                         <div class="grid">
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Autopsy</span>
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Redline</span>
@@ -284,7 +292,7 @@
                 </div>
                 <div class="relative tools-dropdown">
                     <button class="bg-teal-100 text-teal-800 font-medium px-4 py-2 rounded-full">Pentesting Tools</button>
-                    <div class="tools-menu shadow-lg rounded-md mt-0 p-3">
+                    <div class="tools-menu mt-0">
                         <div class="grid">
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Metasploit</span>
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">BurpSuite</span>
@@ -294,7 +302,7 @@
                 </div>
                 <div class="relative tools-dropdown">
                     <button class="bg-teal-100 text-teal-800 font-medium px-4 py-2 rounded-full">Vulnerability Scans</button>
-                    <div class="tools-menu shadow-lg rounded-md mt-0 p-3">
+                    <div class="tools-menu mt-0">
                         <div class="grid">
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">OpenVAS</span>
                             <span class="bg-teal-100 text-teal-800 font-medium px-3 py-1 rounded-full">Nessus</span>
