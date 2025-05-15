@@ -6,7 +6,7 @@ Welcome to my personal portfolio! Here you can explore:
 - **Skills & Expertise**: Highlighting my skills in cybersecurity, development, and more
 - **Social Links**: Connect with me on LinkedIn, GitHub, and other platforms
 
-🌐 **Visit my portfolio site**: [https://bhart-verma.github.io/portfolio/](https://bhart-verma.github.io/portfolio/)
+🌐 **Visit my portfolio site**: [https://CyberBhart.github.io/portfolio/](https://bhart-verma.github.io/portfolio/)
 
 ---
 
