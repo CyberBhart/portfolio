@@ -8,7 +8,7 @@ Here you can explore:
 - **Skills & Expertise**: Highlighting my skills in cybersecurity, development, and more  
 - **Social Links**: Connect with me on LinkedIn, GitHub, and other platforms  
 
-🌐 **Visit my portfolio site**: <a href="[https://CyberBhart.github.io/portfolio/](https://cyberbhart.github.io/portfolio/)" target="_blank">https://CyberBhart.github.io/parrot_portfolio/</a>
+🌐 **Visit my portfolio site**: <a href="[https://CyberBhart.github.io/portfolio/](https://cyberbhart.github.io/portfolio/)" target="_blank">https://CyberBhart.github.io/portfolio/</a>
 
 ---
 
@@ -21,4 +21,4 @@ This project is under the MIT License. See [`LICENSE`](./LICENSE) for details.
 **Made with 💚 by Bhart Verma**
 *Cybersecurity Specialist | Ethical Hacker | Threat Hunter*
 
-🔗 [LinkedIn](https://in.linkedin.com/in/bhartverma) | [GitHub](https://github.com/CyberBhart)
+🔗 [LinkedIn](https://in.linkedin.com/in/cyberbhart) | [GitHub](https://github.com/CyberBhart)
