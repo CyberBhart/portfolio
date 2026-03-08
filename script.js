@@ -1,9 +1,9 @@
 // Wait for DOM to load
 document.addEventListener('DOMContentLoaded', function() {
-    // Boot sequence - show desktop after boot (5 seconds)
+    // Boot sequence - show desktop after boot (6 seconds total now)
     setTimeout(() => {
         document.getElementById('desktop').style.display = 'block';
-    }, 5000);
+    }, 6000);
 
     // Clock
     function updateTime() {
@@ -686,31 +686,39 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Parrot OS Switcher (dropdown)
-    const osSwitcherDropdown = document.querySelector('.os-switcher-dropdown');
-    const osDropdownMenu = document.querySelector('.os-dropdown-menu');
-    const osCurrent = document.querySelector('.os-current');
-    
-    if (osSwitcherDropdown && osDropdownMenu) {
-        osCurrent.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const isVisible = osDropdownMenu.style.display === 'block';
-            osDropdownMenu.style.display = isVisible ? 'none' : 'block';
-        });
+    setTimeout(() => {
+        const osSwitcherDropdown = document.querySelector('.os-switcher-dropdown');
+        const osDropdownMenu = document.querySelector('.os-dropdown-menu');
+        const osCurrent = document.querySelector('.os-current');
         
-        document.addEventListener('click', (e) => {
-            if (!osSwitcherDropdown.contains(e.target)) {
-                osDropdownMenu.style.display = 'none';
-            }
-        });
+        console.log('OS Switcher elements:', { osSwitcherDropdown, osDropdownMenu, osCurrent });
         
-        document.querySelectorAll('.os-menu-option').forEach(option => {
-            option.addEventListener('click', () => {
-                const targetOS = option.getAttribute('data-switch');
-                switchOS(targetOS);
-                osDropdownMenu.style.display = 'none';
+        if (osSwitcherDropdown && osDropdownMenu && osCurrent) {
+            osCurrent.addEventListener('click', (e) => {
+                e.stopPropagation();
+                console.log('OS Switcher clicked');
+                const isVisible = osDropdownMenu.style.display === 'block';
+                osDropdownMenu.style.display = isVisible ? 'none' : 'block';
             });
-        });
-    }
+            
+            document.addEventListener('click', (e) => {
+                if (!osSwitcherDropdown.contains(e.target)) {
+                    osDropdownMenu.style.display = 'none';
+                }
+            });
+            
+            document.querySelectorAll('.os-menu-option').forEach(option => {
+                option.addEventListener('click', () => {
+                    const targetOS = option.getAttribute('data-switch');
+                    console.log('Switching to:', targetOS);
+                    switchOS(targetOS);
+                    osDropdownMenu.style.display = 'none';
+                });
+            });
+        } else {
+            console.error('OS Switcher elements not found!');
+        }
+    }, 100);
 
     // Kali Sidebar Interactions
     const kaliSwitchOS = document.querySelector('.kali-switch-os');
