@@ -40,7 +40,7 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 9999;
-    animation: fadeOut 1s ease-in-out 5s forwards;
+    animation: fadeOut 1s ease-in-out 6s forwards;
 }
 
 @keyframes fadeOut {
@@ -104,7 +104,7 @@ body {
 .loading-progress {
     height: 100%;
     background: linear-gradient(90deg, var(--parrot-cyan), var(--parrot-green));
-    animation: loading 5s ease-in-out forwards;
+    animation: loading 6s ease-in-out forwards;
 }
 
 @keyframes loading {
@@ -121,7 +121,7 @@ body {
         linear-gradient(135deg, var(--parrot-darker) 0%, var(--parrot-dark) 100%);
     background-size: 100px 100px, cover;
     position: relative;
-    animation: fadeIn 1s ease-in-out 5s forwards;
+    animation: fadeIn 1s ease-in-out 6s forwards;
     opacity: 0;
 }
 
@@ -1142,12 +1142,31 @@ h3 {
         height: 40px;
     }
     
-    .top-bar-left span:not(.logo) {
+    .top-bar-left span:not(.logo):not(.os-current) {
         display: none;
     }
     
-    .top-bar-right .icon:not(.power-btn):not(.theme-icon) {
+    /* Keep OS switcher visible on mobile */
+    .os-switcher-dropdown {
+        display: block !important;
+    }
+    
+    .os-current {
+        font-size: 12px;
+        padding: 3px 6px;
+    }
+    
+    .top-bar-right .icon:not(.power-btn) {
         display: none;
+    }
+    
+    /* Keep theme switcher visible */
+    .top-bar-right .theme-switcher {
+        display: block !important;
+    }
+    
+    .theme-icon {
+        font-size: 16px;
     }
     
     /* Smaller circular layout for mobile */
