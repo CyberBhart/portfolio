@@ -8,7 +8,7 @@ Here you can explore:
 - **Skills & Expertise**: Highlighting my skills in cybersecurity, development, and more  
 - **Social Links**: Connect with me on LinkedIn, GitHub, and other platforms  
 
-🌐 **Visit my portfolio site**: <a href="[https://CyberBhart.github.io/parrot_portfolio/](https://cyberbhart.github.io/parrot_portfolio/)" target="_blank">https://CyberBhart.github.io/parrot_portfolio/</a>
+🌐 **Visit my portfolio site**: <a href="[https://CyberBhart.github.io/portfolio/](https://cyberbhart.github.io/portfolio/)" target="_blank">https://CyberBhart.github.io/parrot_portfolio/</a>
 
 ---
 
