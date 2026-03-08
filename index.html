@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Bhart Verma // Parrot Security OS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Boot Screen -->
+    <div id="boot-screen">
+        <div class="boot-content">
+            <div class="boot-logo-container">
+                <svg class="boot-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="bootGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#06d6a0;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#18a89a;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="100" cy="100" r="90" fill="url(#bootGrad)" opacity="0.3"/>
+                    <circle cx="100" cy="100" r="75" fill="none" stroke="url(#bootGrad)" stroke-width="4"/>
+                    <text x="100" y="125" font-size="90" text-anchor="middle" fill="#06d6a0">🦜</text>
+                </svg>
+            </div>
+            <div class="boot-text">
+                <p>Parrot Security OS 6.2</p>
+                <p class="typing">Initializing Bhart Verma's Portfolio...</p>
+                <p class="boot-detail">Loading security modules...</p>
+            </div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Desktop Environment -->
+    <div id="desktop" style="display: none;">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="top-bar-left">
+                <span class="logo">🦜 ParrotOS</span>
+                <span class="username">bhart@parrot-security:~$</span>
+            </div>
+            <div class="top-bar-center">
+                <span id="current-time"></span>
+            </div>
+            <div class="top-bar-right">
+                <div class="theme-switcher">
+                    <span class="theme-icon" id="theme-toggle" title="Change Theme">🎨</span>
+                    <div class="theme-menu" id="theme-menu" style="display: none;">
+                        <div class="theme-option" data-theme="parrot-green">Parrot Green</div>
+                        <div class="theme-option" data-theme="parrot-purple">Parrot Purple</div>
+                        <div class="theme-option" data-theme="kali">Kali Blue</div>
+                    </div>
+                </div>
+                <span class="icon" title="Network">📡</span>
+                <span class="icon" title="Volume">🔊</span>
+                <span class="icon power-btn" title="Power Options">⏻</span>
+            </div>
+        </div>
+
+        <!-- Desktop Icons - Circular Center Layout -->
+        <div class="desktop-icons-circle">
+            <div class="circle-container">
+                <div class="center-logo">
+                    <div class="parrot-logo-container">
+                        <svg class="parrot-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#06d6a0;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#18a89a;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <circle cx="100" cy="100" r="90" fill="url(#logoGrad)" opacity="0.2"/>
+                            <circle cx="100" cy="100" r="75" fill="none" stroke="url(#logoGrad)" stroke-width="3"/>
+                            <text x="100" y="125" font-size="80" text-anchor="middle" fill="#06d6a0">🦜</text>
+                        </svg>
+                    </div>
+                    <span class="center-text">Bhart Verma</span>
+                </div>
+                <div class="icon-item" data-window="terminal" style="--index: 0">
+                    <div class="icon-wrapper">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%2306d6a0' width='100' height='100' rx='15'/%3E%3Ctext x='50' y='50' font-size='50' text-anchor='middle' dy='.3em' fill='%23000'%3E$%3C/text%3E%3C/svg%3E" alt="Terminal">
+                        <span>Terminal</span>
+                    </div>
+                </div>
+                <div class="icon-item" data-window="about" style="--index: 1">
+                    <div class="icon-wrapper">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%2306d6a0'/%3E%3Ctext x='50' y='50' font-size='40' text-anchor='middle' dy='.3em' fill='white'%3Eℹ%3C/text%3E%3C/svg%3E" alt="About">
+                        <span>About_Me</span>
+                    </div>
+                </div>
+                <div class="icon-item" data-window="skills" style="--index: 2">
+                    <div class="icon-wrapper">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23ef476f' width='100' height='100' rx='10'/%3E%3Ctext x='50' y='50' font-size='40' text-anchor='middle' dy='.3em' fill='white'%3E⚙%3C/text%3E%3C/svg%3E" alt="Skills">
+                        <span>Skills.exe</span>
+                    </div>
+                </div>
+                <div class="icon-item" data-window="experience" style="--index: 3">
+                    <div class="icon-wrapper">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23ffd166' width='100' height='100' rx='10'/%3E%3Ctext x='50' y='50' font-size='40' text-anchor='middle' dy='.3em' fill='%23333'%3E💼%3C/text%3E%3C/svg%3E" alt="Experience">
+                        <span>Experience.log</span>
+                    </div>
+                </div>
+                <div class="icon-item" data-window="tools" style="--index: 4">
+                    <div class="icon-wrapper">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%2318a89a' width='100' height='100' rx='10'/%3E%3Ctext x='50' y='50' font-size='40' text-anchor='middle' dy='.3em' fill='white'%3E🛠%3C/text%3E%3C/svg%3E" alt="Tools">
+                        <span>Arsenal</span>
+                    </div>
+                </div>
+                <div class="icon-item" data-window="certs" style="--index: 5">
+                    <div class="icon-wrapper">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23118ab2' width='100' height='100' rx='10'/%3E%3Ctext x='50' y='50' font-size='40' text-anchor='middle' dy='.3em' fill='white'%3E🎓%3C/text%3E%3C/svg%3E" alt="Certifications">
+                        <span>Badges.txt</span>
+                    </div>
+                </div>
+                <div class="icon-item" data-window="contact" style="--index: 6">
+                    <div class="icon-wrapper">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23073b4c' width='100' height='100' rx='10'/%3E%3Ctext x='50' y='50' font-size='40' text-anchor='middle' dy='.3em' fill='white'%3E📧%3C/text%3E%3C/svg%3E" alt="Contact">
+                        <span>Contact.sh</span>
+                    </div>
+                </div>
+                <div class="icon-item" data-window="resources" style="--index: 7">
+                    <div class="icon-wrapper">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%236a4c93' width='100' height='100' rx='10'/%3E%3Ctext x='50' y='50' font-size='40' text-anchor='middle' dy='.3em' fill='white'%3E📚%3C/text%3E%3C/svg%3E" alt="Resources">
+                        <span>Resources</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dock -->
+        <div class="dock">
+            <div class="dock-item" data-window="terminal" title="Terminal">
+                <span class="dock-icon">💻</span>
+            </div>
+            <div class="dock-item" data-window="about" title="About Me">
+                <span class="dock-icon">👤</span>
+            </div>
+            <div class="dock-item" data-window="skills" title="Skills">
+                <span class="dock-icon">⚡</span>
+            </div>
+            <div class="dock-item" data-window="experience" title="Experience">
+                <span class="dock-icon">📊</span>
+            </div>
+        </div>
+
+        <!-- Windows -->
+        <!-- Terminal Window -->
+        <div class="window" id="terminal" style="display: none;">
+            <div class="window-header">
+                <span class="window-title">🐚 root@parrot-security:~#</span>
+                <div class="window-controls">
+                    <span class="minimize">_</span>
+                    <span class="maximize">□</span>
+                    <span class="close">✕</span>
+                </div>
+            </div>
+            <div class="window-content terminal-content">
+                <div id="terminal-output">
+                    <p class="prompt-line">Welcome to Bhart's Security Terminal</p>
+                    <p class="prompt-line">Type 'help' to see available commands</p>
+                    <p class="prompt-line">═══════════════════════════════════════</p>
+                </div>
+                <div class="input-line">
+                    <span class="prompt">bhart@parrot:~$</span>
+                    <input type="text" id="terminal-input" autocomplete="off" spellcheck="false">
+                </div>
+            </div>
+        </div>
+
+        <!-- About Window -->
+        <div class="window" id="about" style="display: none;">
+            <div class="window-header">
+                <span class="window-title">📄 About_Me.txt</span>
+                <div class="window-controls">
+                    <span class="minimize">_</span>
+                    <span class="maximize">□</span>
+                    <span class="close">✕</span>
+                </div>
+            </div>
+            <div class="window-content">
+                <div class="content-scroll scrollable">
+                    <h2>// Bhart Verma</h2>
+                    <p class="subtitle">Cybersecurity Specialist | Threat Hunter | Technical Support Expert</p>
+                    <div class="divider"></div>
+                    <p>As a tech-savvy cybersecurity professional with a passion for hunting threats and fortifying systems, I bring extensive hands-on experience in malware analysis, vulnerability assessment, and incident response.</p>
+                    <p>With over a decade of IT experience and specialized cybersecurity expertise, I focus on resolving complex security challenges, conducting penetration tests, and ensuring robust defense mechanisms for organizations.</p>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">9+</div>
+                            <div class="stat-label">Certifications</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Systems Secured</div>
+                        </div>
+                    </div>
+                    <div class="contact-links">
+                        <a href="https://in.linkedin.com/in/bhartverma" target="_blank" class="btn">LinkedIn Profile</a>
+                        <a href="assets/CV.pdf" target="_blank" class="btn btn-secondary">Download CV</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills Window -->
+        <div class="window" id="skills" style="display: none;">
+            <div class="window-header">
+                <span class="window-title">⚙️ Skills.exe - Running...</span>
+                <div class="window-controls">
+                    <span class="minimize">_</span>
+                    <span class="maximize">□</span>
+                    <span class="close">✕</span>
+                </div>
+            </div>
+            <div class="window-content">
+                <div class="content-scroll scrollable">
+                    <h2>// Core Competencies</h2>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3>🔒 Security Operations</h3>
+                            <div class="skill-item">
+                                <span>Threat Analysis & Hunting</span>
+                                <div class="skill-bar"><div class="skill-fill" style="width: 90%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <span>Incident Response</span>
+                                <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <span>Vulnerability Assessment</span>
+                                <div class="skill-bar"><div class="skill-fill" style="width: 90%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <span>Malware Analysis</span>
+                                <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>🎯 Penetration Testing</h3>
+                            <div class="skill-item">
+                                <span>Web Application Testing</span>
+                                <div class="skill-bar"><div class="skill-fill" style="width: 88%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <span>Network Penetration</span>
+                                <div class="skill-bar"><div class="skill-fill" style="width: 82%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <span>Exploitation & Post-Exploitation</span>
+                                <div class="skill-bar"><div class="skill-fill" style="width: 80%"></div></div>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>🔍 Digital Forensics</h3>
+                            <div class="skill-item">
+                                <span>Forensic Analysis</span>
+                                <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <span>Memory Analysis</span>
+                                <div class="skill-bar"><div class="skill-fill" style="width: 78%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <span>Log Analysis (SIEM)</span>
+                                <div class="skill-bar"><div class="skill-fill" style="width: 87%"></div></div>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>☁️ Cloud & Infrastructure</h3>
+                            <div class="skill-item">
+                                <span>AWS Security</span>
+                                <div class="skill-bar"><div class="skill-fill" style="width: 75%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <span>Network Management</span>
+                                <div class="skill-bar"><div class="skill-fill" style="width: 90%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <span>Technical Support</span>
+                                <div class="skill-bar"><div class="skill-fill" style="width: 95%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Experience Window -->
+        <div class="window" id="experience" style="display: none;">
+            <div class="window-header">
+                <span class="window-title">📋 Experience.log</span>
+                <div class="window-controls">
+                    <span class="minimize">_</span>
+                    <span class="maximize">□</span>
+                    <span class="close">✕</span>
+                </div>
+            </div>
+            <div class="window-content">
+                <div class="content-scroll scrollable">
+                    <h2>// Career Timeline</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">Apr 2025 - Present</div>
+                            <div class="timeline-content">
+                                <h3>Cybersecurity Analyst</h3>
+                                <p class="company">Active Security Operations</p>
+                                <ul class="achievements">
+                                    <li>🎯 Conducted threat analysis and incident response to mitigate advanced persistent threats</li>
+                                    <li>🔍 Performed comprehensive vulnerability assessments using OpenVAS and Nessus</li>
+                                    <li>📊 Utilized SIEM tools (Splunk, Wazuh) for real-time threat monitoring and correlation</li>
+                                    <li>⚔️ Executed penetration testing engagements with Metasploit and BurpSuite</li>
+                                    <li>📝 Developed detailed security reports and communicated findings to stakeholders</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Jul 2024 - Oct 2024</div>
+                            <div class="timeline-content">
+                                <h3>Cybersecurity Intern</h3>
+                                <p class="company">Center for Cyber Security Studies & Research</p>
+                                <ul class="achievements">
+                                    <li>🔬 Assisted in threat analysis and vulnerability assessments</li>
+                                    <li>📈 Learned SIEM tools (Splunk, ELK Stack) for advanced log analysis</li>
+                                    <li>🕵️ Used forensic tools (Autopsy, Redline) for incident investigation</li>
+                                    <li>📚 Contributed to security documentation and incident reports</li>
+                                    <li>🎓 Participated in training on MITRE ATT&CK and Cyber Kill Chain frameworks</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Oct 2016 - Dec 2024</div>
+                            <div class="timeline-content">
+                                <h3>Technical Support Specialist</h3>
+                                <p class="company">Redblink Technologies, Mohali</p>
+                                <ul class="achievements">
+                                    <li>🦠 Investigated and remediated malware on 500+ WordPress sites using Wordfence, Sucuri, VirusTotal</li>
+                                    <li>🔐 Conducted vulnerability scans and security audits with OpenVAS and Nessus</li>
+                                    <li>💬 Provided enterprise client support via Zendesk, resolving critical security issues</li>
+                                    <li>📊 Created comprehensive remediation reports for security vulnerabilities</li>
+                                    <li>🎓 Trained clients on security best practices and defensive tools</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Apr 2015 - Aug 2016</div>
+                            <div class="timeline-content">
+                                <h3>TINXSYS Support Engineer L2</h3>
+                                <p class="company">Vayam Info Solutions Pvt Ltd, Panchkula</p>
+                                <ul class="achievements">
+                                    <li>🔄 Managed secure data migration to TINXSYS servers, ensuring data integrity</li>
+                                    <li>🌐 Supported 500+ endpoints with advanced network troubleshooting</li>
+                                    <li>📡 Used Wireshark and Nmap for network performance analysis and security audits</li>
+                                    <li>🛠️ Optimized server stability and documented security processes</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Sep 2010 - May 2014</div>
+                            <div class="timeline-content">
+                                <h3>Hardware & Software Engineer</h3>
+                                <p class="company">Comvia Computers, Ludhiana</p>
+                                <ul class="achievements">
+                                    <li>💻 Managed hardware/software installations for 550+ assets</li>
+                                    <li>🔧 Performed data recovery and advanced system troubleshooting</li>
+                                    <li>🔒 Ensured security compliance with WSUS and Symantec updates</li>
+                                    <li>👥 Provided on-site/remote support for 200+ users</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tools Window -->
+        <div class="window" id="tools" style="display: none;">
+            <div class="window-header">
+                <span class="window-title">🛠️ Arsenal - Security Tools</span>
+                <div class="window-controls">
+                    <span class="minimize">_</span>
+                    <span class="maximize">□</span>
+                    <span class="close">✕</span>
+                </div>
+            </div>
+            <div class="window-content">
+                <div class="content-scroll scrollable">
+                    <h2>// Security Arsenal</h2>
+                    <div class="tools-grid">
+                        <div class="tool-category">
+                            <h3>📚 Frameworks</h3>
+                            <div class="tool-tags">
+                                <span class="tag">NIST Cybersecurity</span>
+                                <span class="tag">OWASP Top 10</span>
+                                <span class="tag">MITRE ATT&CK</span>
+                                <span class="tag">Cyber Kill Chain</span>
+                            </div>
+                        </div>
+                        <div class="tool-category">
+                            <h3>🎯 Threat Intelligence</h3>
+                            <div class="tool-tags">
+                                <span class="tag">MISP</span>
+                                <span class="tag">The Hive</span>
+                                <span class="tag">OpenCTI</span>
+                            </div>
+                        </div>
+                        <div class="tool-category">
+                            <h3>📊 SIEM & Monitoring</h3>
+                            <div class="tool-tags">
+                                <span class="tag">Splunk</span>
+                                <span class="tag">Wazuh</span>
+                                <span class="tag">ELK Stack</span>
+                            </div>
+                        </div>
+                        <div class="tool-category">
+                            <h3>🌐 Network Analysis</h3>
+                            <div class="tool-tags">
+                                <span class="tag">Snort IDS</span>
+                                <span class="tag">Nmap</span>
+                                <span class="tag">Wireshark</span>
+                                <span class="tag">NetworkMiner</span>
+                            </div>
+                        </div>
+                        <div class="tool-category">
+                            <h3>🔍 Digital Forensics</h3>
+                            <div class="tool-tags">
+                                <span class="tag">Autopsy</span>
+                                <span class="tag">Redline</span>
+                                <span class="tag">KAPE</span>
+                            </div>
+                        </div>
+                        <div class="tool-category">
+                            <h3>⚔️ Penetration Testing</h3>
+                            <div class="tool-tags">
+                                <span class="tag">Metasploit</span>
+                                <span class="tag">BurpSuite Pro</span>
+                                <span class="tag">OWASP ZAP</span>
+                            </div>
+                        </div>
+                        <div class="tool-category">
+                            <h3>🔐 Vulnerability Scanning</h3>
+                            <div class="tool-tags">
+                                <span class="tag">OpenVAS</span>
+                                <span class="tag">Nessus Professional</span>
+                            </div>
+                        </div>
+                        <div class="tool-category">
+                            <h3>☁️ Cloud Security</h3>
+                            <div class="tool-tags">
+                                <span class="tag">AWS S3</span>
+                                <span class="tag">AWS Security Hub</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certifications Window -->
+        <div class="window" id="certs" style="display: none;">
+            <div class="window-header">
+                <span class="window-title">🎓 Badges.txt - Professional Certifications</span>
+                <div class="window-controls">
+                    <span class="minimize">_</span>
+                    <span class="maximize">□</span>
+                    <span class="close">✕</span>
+                </div>
+            </div>
+            <div class="window-content">
+                <div class="content-scroll scrollable">
+                    <h2>// Professional Certifications</h2>
+                    <div class="certs-grid">
+                        <div class="cert-card featured">
+                            <div class="cert-badge">🏆</div>
+                            <h3>Certified Ethical Hacker (v13)</h3>
+                            <p class="cert-issuer">EC-Council</p>
+                            <p class="cert-desc">Advanced penetration testing and ethical hacking methodologies</p>
+                        </div>
+                        <div class="cert-card">
+                            <div class="cert-badge">🛡️</div>
+                            <h3>CompTIA Security+</h3>
+                            <p class="cert-issuer">CompTIA</p>
+                            <p class="cert-desc">Core cybersecurity skills and best practices</p>
+                        </div>
+                        <div class="cert-card">
+                            <div class="cert-badge">⚔️</div>
+                            <h3>CompTIA PenTest+</h3>
+                            <p class="cert-issuer">TryHackMe</p>
+                            <p class="cert-desc">Penetration testing and vulnerability assessment</p>
+                        </div>
+                        <div class="cert-card">
+                            <div class="cert-badge">🎯</div>
+                            <h3>Jr Penetration Tester</h3>
+                            <p class="cert-issuer">TryHackMe</p>
+                            <p class="cert-desc">Practical penetration testing skills</p>
+                        </div>
+                        <div class="cert-card">
+                            <div class="cert-badge">🔍</div>
+                            <h3>SOC Analyst</h3>
+                            <p class="cert-issuer">LetsDefend</p>
+                            <p class="cert-desc">Security operations and incident response</p>
+                        </div>
+                        <div class="cert-card">
+                            <div class="cert-badge">🔐</div>
+                            <h3>Certified in Cybersecurity</h3>
+                            <p class="cert-issuer">ISC2</p>
+                            <p class="cert-desc">Foundational cybersecurity principles</p>
+                        </div>
+                        <div class="cert-card">
+                            <div class="cert-badge">☁️</div>
+                            <h3>AWS Cloud Practitioner</h3>
+                            <p class="cert-issuer">Amazon Web Services</p>
+                            <p class="cert-desc">Cloud fundamentals and AWS services</p>
+                        </div>
+                        <div class="cert-card">
+                            <div class="cert-badge">🤖</div>
+                            <h3>AWS AI Practitioner</h3>
+                            <p class="cert-issuer">Amazon Web Services</p>
+                            <p class="cert-desc">AI/ML services and applications</p>
+                        </div>
+                        <div class="cert-card">
+                            <div class="cert-badge">💻</div>
+                            <h3>CompTIA A+</h3>
+                            <p class="cert-issuer">CompTIA</p>
+                            <p class="cert-desc">IT fundamentals and technical support</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Window -->
+        <div class="window" id="contact" style="display: none;">
+            <div class="window-header">
+                <span class="window-title">📧 Contact.sh</span>
+                <div class="window-controls">
+                    <span class="minimize">_</span>
+                    <span class="maximize">□</span>
+                    <span class="close">✕</span>
+                </div>
+            </div>
+            <div class="window-content">
+                <div class="content-scroll scrollable terminal-style">
+                    <pre class="ascii-art">
+   ____            _             _   
+  / ___|___  _ __ | |_ __ _  ___| |_ 
+ | |   / _ \| '_ \| __/ _` |/ __| __|
+ | |__| (_) | | | | || (_| | (__| |_ 
+  \____\___/|_| |_|\__\__,_|\___|\__|
+                                      
+</pre>
+                    <h2>// Get in Touch</h2>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-label">$ location:</span>
+                            <span class="contact-value">Mohali, Punjab, India</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">$ linkedin:</span>
+                            <a href="https://in.linkedin.com/in/bhartverma" target="_blank" class="contact-value link">linkedin.com/in/bhartverma</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">$ github:</span>
+                            <a href="https://github.com/CyberBhart" target="_blank" class="contact-value link">github.com/CyberBhart</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">$ resume:</span>
+                            <a href="assets/CV.pdf" target="_blank" class="contact-value link">Download CV.pdf</a>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <p class="terminal-text">
+                        <span class="prompt">root@parrot:~#</span> echo "Let's collaborate on securing the digital world!"
+                    </p>
+                    <p class="output-text">"Let's collaborate on securing the digital world!"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resources Window -->
+        <div class="window" id="resources" style="display: none;">
+            <div class="window-header">
+                <span class="window-title">📚 Resources - Security Tools & References</span>
+                <div class="window-controls">
+                    <span class="minimize">_</span>
+                    <span class="maximize">□</span>
+                    <span class="close">✕</span>
+                </div>
+            </div>
+            <div class="window-content">
+                <div class="content-scroll scrollable">
+                    <h2>// Security Resources & Projects</h2>
+                    <div class="resources-grid">
+                        <div class="resource-category">
+                            <h3>📝 My Projects & Notes</h3>
+                            <a href="https://github.com/CyberBhart/CEH-Notes" target="_blank" rel="noopener noreferrer" class="resource-link">
+                                <span class="resource-icon">📘</span>
+                                <div class="resource-info">
+                                    <strong>CEH Study Notes</strong>
+                                    <p>Comprehensive notes for Certified Ethical Hacker certification</p>
+                                </div>
+                            </a>
+                            <a href="https://github.com/CyberBhart/LLM-Testing" target="_blank" rel="noopener noreferrer" class="resource-link">
+                                <span class="resource-icon">🤖</span>
+                                <div class="resource-info">
+                                    <strong>LLM Security Testing</strong>
+                                    <p>Testing methodologies for AI/LLM vulnerabilities</p>
+                                </div>
+                            </a>
+                            <a href="https://github.com/CyberBhart/Web-Testing" target="_blank" rel="noopener noreferrer" class="resource-link">
+                                <span class="resource-icon">🌐</span>
+                                <div class="resource-info">
+                                    <strong>Web Application Testing</strong>
+                                    <p>Web security testing frameworks and checklists</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="resource-category">
+                            <h3>🛠️ Favorite Tools</h3>
+                            <a href="https://www.revshells.com/" target="_blank" rel="noopener noreferrer" class="resource-link">
+                                <span class="resource-icon">🐚</span>
+                                <div class="resource-info">
+                                    <strong>Reverse Shell Generator</strong>
+                                    <p>Generate reverse shell payloads for various platforms</p>
+                                </div>
+                            </a>
+                            <a href="https://acorzo1983.github.io/HashCatCG/" target="_blank" rel="noopener noreferrer" class="resource-link">
+                                <span class="resource-icon">🔓</span>
+                                <div class="resource-info">
+                                    <strong>HashCat Command Generator</strong>
+                                    <p>Build HashCat commands for password cracking</p>
+                                </div>
+                            </a>
+                            <a href="https://acorzo1983.github.io/SQLMapCG/" target="_blank" rel="noopener noreferrer" class="resource-link">
+                                <span class="resource-icon">💉</span>
+                                <div class="resource-info">
+                                    <strong>SQLMap Command Generator</strong>
+                                    <p>Generate SQLMap commands for SQL injection testing</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="resource-category">
+                            <h3>📄 Resume</h3>
+                            <a href="assets/CV.pdf" download class="resource-link download-cv">
+                                <span class="resource-icon">📥</span>
+                                <div class="resource-info">
+                                    <strong>Download My CV</strong>
+                                    <p>Get a copy of my resume in PDF format</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
