@@ -154,20 +154,40 @@ document.addEventListener('DOMContentLoaded', function() {
         // Check if mobile
         const isMobile = window.innerWidth < 768;
         
-        // Position window
-        if (!win.element.style.left || isMobile) {
-            if (isMobile) {
-                // Center on mobile
-                win.element.style.left = '2.5vw';
-                win.element.style.top = '60px';
-            } else {
-                // Desktop positioning with offset
-                const offset = Object.keys(windows).filter(id => 
-                    windows[id].element.style.display === 'block'
-                ).length * 30;
-                
-                win.element.style.left = `calc(50% - 300px + ${offset}px)`;
-                win.element.style.top = `calc(50% - 200px + ${offset}px)`;
+        // Position window - always recalculate for desktop to ensure centering
+        if (isMobile) {
+            // Mobile positioning
+            win.element.style.left = '2.5vw';
+            win.element.style.top = '60px';
+            win.element.style.width = '';
+            win.element.style.height = '';
+        } else {
+            // Desktop positioning - properly centered
+            const windowWidth = win.element.offsetWidth || (windowId === 'experience' ? 900 : 700);
+            const windowHeight = win.element.offsetHeight || 500;
+            
+            // Calculate center position
+            const centerX = (window.innerWidth - windowWidth) / 2;
+            const centerY = (window.innerHeight - windowHeight) / 2;
+            
+            // Add small offset for stacking effect if multiple windows open
+            const openWindows = Object.keys(windows).filter(id => 
+                windows[id].element.style.display === 'block' && id !== windowId
+            ).length;
+            const offset = openWindows * 40;
+            
+            win.element.style.left = (centerX + offset) + 'px';
+            win.element.style.top = Math.max(60, centerY + offset) + 'px';
+            
+            // Ensure window doesn't go off screen
+            const maxLeft = window.innerWidth - windowWidth - 20;
+            const maxTop = window.innerHeight - windowHeight - 20;
+            
+            if (parseInt(win.element.style.left) > maxLeft) {
+                win.element.style.left = maxLeft + 'px';
+            }
+            if (parseInt(win.element.style.top) > maxTop) {
+                win.element.style.top = maxTop + 'px';
             }
         }
 
@@ -259,6 +279,8 @@ document.addEventListener('DOMContentLoaded', function() {
         let currentY;
         let initialX;
         let initialY;
+        let offsetX;
+        let offsetY;
 
         const header = win.querySelector('.window-header');
         
@@ -271,24 +293,53 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 isDragging = true;
                 setActiveWindow(win.id);
-
-                initialX = e.clientX - (parseInt(win.style.left) || 0);
-                initialY = e.clientY - (parseInt(win.style.top) || 0);
+                
+                // Get current position
+                const rect = win.getBoundingClientRect();
+                offsetX = e.clientX - rect.left;
+                offsetY = e.clientY - rect.top;
+                
+                // Add dragging class for visual feedback
+                win.style.cursor = 'move';
+                header.style.cursor = 'move';
+                
+                e.preventDefault();
             });
 
             document.addEventListener('mousemove', function(e) {
                 if (isDragging) {
                     e.preventDefault();
-                    currentX = e.clientX - initialX;
-                    currentY = e.clientY - initialY;
-
+                    
+                    // Calculate new position
+                    currentX = e.clientX - offsetX;
+                    currentY = e.clientY - offsetY;
+                    
+                    // Get window dimensions
+                    const winWidth = win.offsetWidth;
+                    const winHeight = win.offsetHeight;
+                    
+                    // Boundary checks - keep window on screen
+                    const minX = 0;
+                    const minY = 35; // Account for top bar
+                    const maxX = window.innerWidth - winWidth;
+                    const maxY = window.innerHeight - 100; // Leave space for dock
+                    
+                    // Constrain position
+                    currentX = Math.max(minX, Math.min(currentX, maxX));
+                    currentY = Math.max(minY, Math.min(currentY, maxY));
+                    
+                    // Update position
                     win.style.left = currentX + 'px';
                     win.style.top = currentY + 'px';
                 }
             });
 
             document.addEventListener('mouseup', function() {
-                isDragging = false;
+                if (isDragging) {
+                    isDragging = false;
+                    win.style.cursor = '';
+                    header.style.cursor = 'move';
+                }
             });
         }
 
