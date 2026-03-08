@@ -603,7 +603,188 @@ document.addEventListener('DOMContentLoaded', function() {
 
     observer.observe(skillsWindow, { attributes: true, attributeFilter: ['style'] });
 
+    // ==================== KALI LINUX FUNCTIONALITY ====================
+    
+    // Kali Boot Animation Lines
+    const kaliBootLines = [
+        '[ [ OK ] Started User Login Management. OK ]',
+        '[ [ OK ] Started Network Manager. OK ]',
+        '[ [ OK ] Reached target Network is Online. OK ]',
+        '[ [ OK ] Reached target System Time Synchronized. OK ]',
+        '[ [ OK ] Started Modem Manager. OK ]',
+        '[ [ OK ] Started Set console font and keymap. OK ]',
+        '[ [ OK ] Reached target Basic System. OK ]',
+        '[ [ OK ] Started Accounts Service. OK ]',
+        '[ [ OK ] Started Daemon for power management. OK ]',
+        '[ [ OK ] Started GNOME Display Manager. OK ]',
+        '[ [ OK ] Started Daily apt download activities. OK ]',
+        '[ [ OK ] Started Update cron activities. OK ]',
+        '[ [ OK ] Started Daily apt upgrade and clean activities. OK ]',
+        '[ [ OK ] Reached target Graphical Interface. OK ]',
+        '[ [ OK ] Starting User Manager for UID 1000... OK ]',
+        '[ [ OK ] Started Session c2 of user bhart. OK ]',
+        '[ Kali GNU/Linux Rolling OK ]',
+        '[ bhart login: OK ]',
+        '[ Password: OK ]',
+        '[ Login successful. Starting desktop environment... ]',
+        '[ Loading Kali desktop... OK ]',
+        '[ Initializing panel and icons... OK ]'
+    ];
+
+    function showKaliBootAnimation(callback) {
+        const bootScreen = document.getElementById('kali-boot-screen');
+        const bootLinesContainer = document.getElementById('kali-boot-lines');
+        const bootTime = document.querySelector('.kali-boot-time');
+        
+        bootScreen.style.display = 'flex';
+        bootLinesContainer.innerHTML = '';
+        
+        // Update time
+        const now = new Date();
+        bootTime.textContent = now.toTimeString().split(' ')[0];
+        
+        let lineIndex = 0;
+        const lineInterval = setInterval(() => {
+            if (lineIndex < kaliBootLines.length) {
+                const p = document.createElement('p');
+                p.textContent = kaliBootLines[lineIndex];
+                p.style.margin = '2px 0';
+                bootLinesContainer.appendChild(p);
+                bootLinesContainer.scrollTop = bootLinesContainer.scrollHeight;
+                lineIndex++;
+            } else {
+                clearInterval(lineInterval);
+                setTimeout(() => {
+                    bootScreen.style.display = 'none';
+                    if (callback) callback();
+                }, 500);
+            }
+        }, 150);
+    }
+
+    // OS Switching
+    function switchOS(targetOS) {
+        const currentOS = document.body.getAttribute('data-os');
+        
+        if (currentOS === targetOS) return;
+        
+        // Hide current OS desktop
+        document.getElementById(`${currentOS}-desktop`).style.display = 'none';
+        
+        if (targetOS === 'kali') {
+            // Show Kali boot animation, then Kali desktop
+            showKaliBootAnimation(() => {
+                document.body.setAttribute('data-os', 'kali');
+                document.getElementById('kali-desktop').style.display = 'block';
+                updateKaliTime();
+            });
+        } else if (targetOS === 'parrot') {
+            // Directly switch to Parrot (no boot animation)
+            document.body.setAttribute('data-os', 'parrot');
+            document.getElementById('parrot-desktop').style.display = 'block';
+        }
+    }
+
+    // Parrot OS Switcher (dropdown)
+    const osSwitcherDropdown = document.querySelector('.os-switcher-dropdown');
+    const osDropdownMenu = document.querySelector('.os-dropdown-menu');
+    const osCurrent = document.querySelector('.os-current');
+    
+    if (osSwitcherDropdown && osDropdownMenu) {
+        osCurrent.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isVisible = osDropdownMenu.style.display === 'block';
+            osDropdownMenu.style.display = isVisible ? 'none' : 'block';
+        });
+        
+        document.addEventListener('click', (e) => {
+            if (!osSwitcherDropdown.contains(e.target)) {
+                osDropdownMenu.style.display = 'none';
+            }
+        });
+        
+        document.querySelectorAll('.os-menu-option').forEach(option => {
+            option.addEventListener('click', () => {
+                const targetOS = option.getAttribute('data-switch');
+                switchOS(targetOS);
+                osDropdownMenu.style.display = 'none';
+            });
+        });
+    }
+
+    // Kali Sidebar Interactions
+    const kaliSwitchOS = document.querySelector('.kali-switch-os');
+    const kaliOsSubmenu = document.querySelector('.kali-os-submenu');
+    
+    if (kaliSwitchOS && kaliOsSubmenu) {
+        kaliSwitchOS.addEventListener('click', () => {
+            const isVisible = kaliOsSubmenu.style.display === 'block';
+            kaliOsSubmenu.style.display = isVisible ? 'none' : 'block';
+        });
+        
+        document.querySelectorAll('.kali-submenu-option').forEach(option => {
+            option.addEventListener('click', () => {
+                const targetOS = option.getAttribute('data-switch');
+                switchOS(targetOS);
+            });
+        });
+    }
+
+    // Kali Reboot
+    document.querySelector('.kali-reboot')?.addEventListener('click', () => {
+        if (confirm('Reboot system?')) {
+            location.reload();
+        }
+    });
+
+    // Kali Time Update
+    function updateKaliTime() {
+        const kaliTime = document.getElementById('kali-time');
+        if (kaliTime) {
+            const now = new Date();
+            kaliTime.textContent = now.toLocaleString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            });
+        }
+    }
+    
+    // Update Kali time every second
+    setInterval(updateKaliTime, 1000);
+    updateKaliTime();
+
+    // Mobile Sidebar Toggle for Kali
+    const kaliAppsText = document.querySelector('.kali-apps-text');
+    const kaliSidebar = document.querySelector('.kali-sidebar');
+    
+    if (kaliAppsText && kaliSidebar && window.innerWidth < 768) {
+        kaliAppsText.addEventListener('click', () => {
+            kaliSidebar.classList.toggle('active');
+        });
+        
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth < 768 && 
+                !kaliSidebar.contains(e.target) && 
+                !kaliAppsText.contains(e.target)) {
+                kaliSidebar.classList.remove('active');
+            }
+        });
+    }
+
+    // Kali Menu Items (placeholders for Phase 2)
+    document.querySelectorAll('.kali-menu-item[data-action]').forEach(item => {
+        item.addEventListener('click', () => {
+            const action = item.getAttribute('data-action');
+            alert(`${action} will be implemented in Phase 2`);
+        });
+    });
+
     console.log('%c Welcome to Bhart Verma\'s Portfolio! ', 'background: #06d6a0; color: #000; font-size: 20px; font-weight: bold; padding: 10px;');
     console.log('%c Cybersecurity Specialist | Ethical Hacker | Threat Hunter ', 'background: #000; color: #06d6a0; font-size: 14px; padding: 5px;');
     console.log('%c Try opening the terminal and type "help" for commands! ', 'color: #06d6a0; font-size: 12px;');
+    console.log('%c Switch to Kali Linux from the ParrotOS menu! ', 'color: #00ff00; font-size: 12px;');
 });
