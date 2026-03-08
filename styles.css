@@ -422,10 +422,12 @@ body[data-theme="kali"] .center-text::before {
     border: 1px solid rgba(6, 214, 160, 0.3);
     border-radius: 10px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    min-width: 600px;
-    min-height: 400px;
-    max-width: 90vw;
-    max-height: 85vh;
+    min-width: 700px;
+    width: 700px;
+    min-height: 500px;
+    height: 500px;
+    max-width: 85vw;
+    max-height: 80vh;
     z-index: 100;
     overflow: hidden;
     opacity: 0;
@@ -441,6 +443,12 @@ body[data-theme="kali"] .center-text::before {
 .window.active {
     z-index: 200;
     border-color: var(--parrot-cyan);
+}
+
+/* Make experience window wider */
+#experience {
+    min-width: 900px;
+    width: 900px;
 }
 
 .window-header {
@@ -1069,12 +1077,15 @@ h3 {
         font-size: 10px;
     }
     
-    /* Windows - full screen on tablet */
-    .window {
+    /* Windows - full screen on tablet - OVERRIDE DESKTOP SIZES */
+    .window,
+    #experience {
         min-width: 90vw !important;
         max-width: 90vw !important;
+        width: 90vw !important;
         min-height: 70vh !important;
         max-height: 80vh !important;
+        height: auto !important;
         left: 5vw !important;
         top: 10vh !important;
     }
@@ -1177,12 +1188,15 @@ h3 {
         transform: scale(1.2);
     }
     
-    /* Windows - nearly full screen on mobile */
-    .window {
+    /* Windows - nearly full screen on mobile - OVERRIDE EVERYTHING */
+    .window,
+    #experience {
         min-width: 95vw !important;
         max-width: 95vw !important;
+        width: 95vw !important;
         min-height: 80vh !important;
         max-height: 85vh !important;
+        height: auto !important;
         left: 2.5vw !important;
         top: 50px !important;
         border-radius: 8px;
