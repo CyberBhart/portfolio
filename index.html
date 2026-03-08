@@ -6,8 +6,16 @@
     <title>Bhart Verma // Parrot Security OS</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <!-- Boot Screen -->
+<body data-os="parrot">
+    <!-- Kali Boot Animation -->
+    <div id="kali-boot-screen" style="display: none;">
+        <div class="kali-boot-container">
+            <div id="kali-boot-lines"></div>
+            <div class="kali-boot-time"></div>
+        </div>
+    </div>
+
+    <!-- Parrot Boot Screen -->
     <div id="boot-screen">
         <div class="boot-content">
             <div class="boot-logo-container">
@@ -36,10 +44,18 @@
 
     <!-- Desktop Environment -->
     <div id="desktop" style="display: none;">
+        
+        <!-- ==================== PARROT OS DESKTOP ==================== -->
+        <div id="parrot-desktop" class="os-theme">
         <!-- Top Bar -->
         <div class="top-bar">
             <div class="top-bar-left">
-                <span class="logo">🦜 ParrotOS</span>
+                <div class="os-switcher-dropdown">
+                    <span class="os-current">🦜 ParrotOS ▼</span>
+                    <div class="os-dropdown-menu" style="display: none;">
+                        <div class="os-menu-option" data-switch="kali">🐉 Switch to Kali Linux</div>
+                    </div>
+                </div>
                 <span class="username">bhart@parrot-security:~$</span>
             </div>
             <div class="top-bar-center">
@@ -49,9 +65,8 @@
                 <div class="theme-switcher">
                     <span class="theme-icon" id="theme-toggle" title="Change Theme">🎨</span>
                     <div class="theme-menu" id="theme-menu" style="display: none;">
-                        <div class="theme-option" data-theme="parrot-green">Parrot Green</div>
+                        <div class="theme-option active" data-theme="parrot-green">Parrot Green</div>
                         <div class="theme-option" data-theme="parrot-purple">Parrot Purple</div>
-                        <div class="theme-option" data-theme="kali">Kali Blue</div>
                     </div>
                 </div>
                 <span class="icon" title="Network">📡</span>
@@ -659,6 +674,91 @@
                 </div>
             </div>
         </div>
+        </div>
+        <!-- End Parrot Desktop -->
+
+        <!-- ==================== KALI LINUX DESKTOP ==================== -->
+        <div id="kali-desktop" class="os-theme" style="display: none;">
+            <!-- Kali Top Bar -->
+            <div class="kali-topbar">
+                <div class="kali-topbar-left">
+                    <span class="kali-apps-text">Applications</span>
+                </div>
+                <div class="kali-topbar-center">
+                    <span id="kali-time"></span>
+                </div>
+                <div class="kali-topbar-right">
+                    <span class="kali-icon">🔊</span>
+                    <span class="kali-icon">📡</span>
+                    <span class="kali-icon kali-power-btn">⏻</span>
+                </div>
+            </div>
+
+            <!-- Kali Sidebar -->
+            <div class="kali-sidebar">
+                <div class="kali-sidebar-header">
+                    <svg class="kali-dragon-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="kaliGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#367bf5;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#2563eb;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="50" cy="50" r="45" fill="url(#kaliGrad)" opacity="0.2"/>
+                        <text x="50" y="65" font-size="50" text-anchor="middle" fill="#00ff00">🐉</text>
+                    </svg>
+                    <span>Applications</span>
+                </div>
+                
+                <div class="kali-menu-item" data-action="kali-terminal">
+                    <span class="kali-menu-icon">💻</span>
+                    <span class="kali-menu-text">Terminal</span>
+                </div>
+                <div class="kali-menu-item" data-action="kali-files">
+                    <span class="kali-menu-icon">📁</span>
+                    <span class="kali-menu-text">Files</span>
+                </div>
+                <div class="kali-menu-item" data-action="kali-browser">
+                    <span class="kali-menu-icon">🌐</span>
+                    <span class="kali-menu-text">Browser</span>
+                </div>
+                <div class="kali-menu-item" data-action="kali-about">
+                    <span class="kali-menu-icon">ℹ️</span>
+                    <span class="kali-menu-text">About Me</span>
+                </div>
+                <div class="kali-menu-item" data-action="kali-resources">
+                    <span class="kali-menu-icon">📚</span>
+                    <span class="kali-menu-text">Resources</span>
+                </div>
+                
+                <div class="kali-menu-separator"></div>
+                
+                <div class="kali-menu-item kali-switch-os">
+                    <span class="kali-menu-icon">🔄</span>
+                    <span class="kali-menu-text">Switch OS</span>
+                    <span class="kali-arrow">▸</span>
+                </div>
+                <div class="kali-os-submenu" style="display: none;">
+                    <div class="kali-submenu-option" data-switch="parrot">🦜 Parrot OS</div>
+                </div>
+                
+                <div class="kali-menu-item kali-reboot">
+                    <span class="kali-menu-icon">🔄</span>
+                    <span class="kali-menu-text">Reboot</span>
+                </div>
+            </div>
+
+            <!-- Kali Main Desktop Area -->
+            <div class="kali-main-area">
+                <!-- Matrix-style background will be via CSS -->
+                <div class="kali-welcome-text">
+                    <h1>Welcome to Kali Linux</h1>
+                    <p>Select an application from the sidebar</p>
+                </div>
+            </div>
+        </div>
+        <!-- End Kali Desktop -->
+
     </div>
 
     <script src="script.js"></script>
