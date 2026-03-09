@@ -682,7 +682,49 @@
             <!-- Kali Top Bar -->
             <div class="kali-topbar">
                 <div class="kali-topbar-left">
-                    <span class="kali-apps-text">Applications</span>
+                    <div class="kali-apps-dropdown">
+                        <span class="kali-apps-btn">Applications</span>
+                        <div class="kali-apps-menu" style="display: none;">
+                            <div class="kali-apps-header">
+                                <svg class="kali-dragon-small" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                    <text x="50" y="65" font-size="50" text-anchor="middle" fill="#00ff00">🐉</text>
+                                </svg>
+                                <span>APPLICATIONS</span>
+                            </div>
+                            <div class="kali-menu-option" data-action="kali-terminal">
+                                <span class="kali-opt-icon">💻</span>
+                                <span>Terminal</span>
+                            </div>
+                            <div class="kali-menu-option" data-action="kali-files">
+                                <span class="kali-opt-icon">📁</span>
+                                <span>Files</span>
+                            </div>
+                            <div class="kali-menu-option" data-action="kali-browser">
+                                <span class="kali-opt-icon">🌐</span>
+                                <span>Browser</span>
+                            </div>
+                            <div class="kali-menu-option" data-action="kali-about">
+                                <span class="kali-opt-icon">ℹ️</span>
+                                <span>About Me</span>
+                            </div>
+                            <div class="kali-menu-option" data-action="kali-resources">
+                                <span class="kali-opt-icon">📚</span>
+                                <span>Resources</span>
+                            </div>
+                            <div class="kali-menu-separator"></div>
+                            <div class="kali-menu-option" data-action="kali-reboot">
+                                <span class="kali-opt-icon">🔄</span>
+                                <span>Reboot</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="kali-switch-dropdown">
+                        <span class="kali-switch-btn">Switch OS</span>
+                        <div class="kali-switch-menu" style="display: none;">
+                            <div class="kali-switch-option" data-switch="parrot">🦜 Parrot OS</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="kali-topbar-center">
                     <span id="kali-time"></span>
@@ -694,66 +736,11 @@
                 </div>
             </div>
 
-            <!-- Kali Sidebar -->
-            <div class="kali-sidebar">
-                <div class="kali-sidebar-header">
-                    <svg class="kali-dragon-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="kaliGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#367bf5;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#2563eb;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <circle cx="50" cy="50" r="45" fill="url(#kaliGrad)" opacity="0.2"/>
-                        <text x="50" y="65" font-size="50" text-anchor="middle" fill="#00ff00">🐉</text>
-                    </svg>
-                    <span>Applications</span>
-                </div>
-                
-                <div class="kali-menu-item" data-action="kali-terminal">
-                    <span class="kali-menu-icon">💻</span>
-                    <span class="kali-menu-text">Terminal</span>
-                </div>
-                <div class="kali-menu-item" data-action="kali-files">
-                    <span class="kali-menu-icon">📁</span>
-                    <span class="kali-menu-text">Files</span>
-                </div>
-                <div class="kali-menu-item" data-action="kali-browser">
-                    <span class="kali-menu-icon">🌐</span>
-                    <span class="kali-menu-text">Browser</span>
-                </div>
-                <div class="kali-menu-item" data-action="kali-about">
-                    <span class="kali-menu-icon">ℹ️</span>
-                    <span class="kali-menu-text">About Me</span>
-                </div>
-                <div class="kali-menu-item" data-action="kali-resources">
-                    <span class="kali-menu-icon">📚</span>
-                    <span class="kali-menu-text">Resources</span>
-                </div>
-                
-                <div class="kali-menu-separator"></div>
-                
-                <div class="kali-menu-item kali-switch-os">
-                    <span class="kali-menu-icon">🔄</span>
-                    <span class="kali-menu-text">Switch OS</span>
-                    <span class="kali-arrow">▸</span>
-                </div>
-                <div class="kali-os-submenu" style="display: none;">
-                    <div class="kali-submenu-option" data-switch="parrot">🦜 Parrot OS</div>
-                </div>
-                
-                <div class="kali-menu-item kali-reboot">
-                    <span class="kali-menu-icon">🔄</span>
-                    <span class="kali-menu-text">Reboot</span>
-                </div>
-            </div>
-
-            <!-- Kali Main Desktop Area -->
+            <!-- Kali Main Desktop Area (full width, no sidebar) -->
             <div class="kali-main-area">
-                <!-- Matrix-style background will be via CSS -->
                 <div class="kali-welcome-text">
                     <h1>Welcome to Kali Linux</h1>
-                    <p>Select an application from the sidebar</p>
+                    <p>Select an application from the menu</p>
                 </div>
             </div>
         </div>
