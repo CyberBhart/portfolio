@@ -52,6 +52,10 @@ body {
 
 .boot-content {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .boot-logo-container {
@@ -97,7 +101,7 @@ body {
     height: 4px;
     background: var(--parrot-gray);
     border-radius: 2px;
-    margin: 30px auto;
+    margin: 30px auto 0;
     overflow: hidden;
 }
 
@@ -1424,22 +1428,23 @@ h3 {
     background: rgba(26, 29, 46, 0.98);
     border: 1px solid var(--parrot-cyan);
     border-radius: 6px;
-    padding: 8px;
-    min-width: 180px;
+    padding: 6px;
+    min-width: 160px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
     z-index: 10001;
 }
 
 .os-menu-option {
-    padding: 8px 12px;
+    padding: 6px 10px;
     cursor: pointer;
     border-radius: 4px;
     transition: all 0.3s;
     color: var(--text-primary);
-    font-size: 13px;
+    font-size: 12px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
+    white-space: nowrap;
 }
 
 .os-menu-option:hover {
@@ -1647,6 +1652,136 @@ h3 {
     color: #367bf5;
     font-size: 18px;
     text-shadow: 0 0 10px #367bf5;
+}
+
+/* Kali Windows */
+.kali-window {
+    background: rgba(12, 17, 23, 0.95);
+    border: 2px solid #367bf5;
+}
+
+.kali-window-header {
+    background: #0c1117;
+    border-bottom: 1px solid #367bf5;
+}
+
+.kali-window-header .window-title {
+    color: #00ff00;
+}
+
+.kali-window-content {
+    color: #00ff00;
+}
+
+.kali-heading {
+    color: #00ff00;
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px #00ff00;
+}
+
+.kali-subtitle {
+    color: #367bf5;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.kali-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #367bf5, transparent);
+    margin: 20px 0;
+}
+
+.kali-about-section {
+    margin: 25px 0;
+}
+
+.kali-about-section h3 {
+    color: #00ff00;
+    font-size: 16px;
+    margin-bottom: 15px;
+    text-shadow: 0 0 8px #00ff00;
+}
+
+.kali-about-section p {
+    color: #ccc;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.kali-links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+}
+
+.kali-profile-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid #367bf5;
+    border-radius: 6px;
+    color: #00ff00;
+    text-decoration: none;
+    transition: all 0.3s;
+    font-size: 13px;
+}
+
+.kali-profile-link:hover {
+    background: rgba(54, 123, 245, 0.2);
+    border-color: #00ff00;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 255, 0, 0.2);
+}
+
+.kali-cv-download {
+    background: rgba(0, 255, 0, 0.1);
+}
+
+.kali-cv-download:hover {
+    background: rgba(0, 255, 0, 0.2);
+}
+
+.kali-link-icon {
+    font-size: 18px;
+}
+
+.kali-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.kali-stat-box {
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid #367bf5;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.kali-stat-box:hover {
+    border-color: #00ff00;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(0, 255, 0, 0.2);
+}
+
+.kali-stat-number {
+    font-size: 32px;
+    font-weight: bold;
+    color: #00ff00;
+    margin-bottom: 8px;
+    text-shadow: 0 0 15px #00ff00;
+}
+
+.kali-stat-label {
+    color: #367bf5;
+    font-size: 12px;
+    text-transform: uppercase;
 }
 
 /* Mobile Responsiveness for Kali */
