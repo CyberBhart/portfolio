@@ -816,11 +816,28 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.kali-menu-option[data-action]').forEach(item => {
         item.addEventListener('click', () => {
             const action = item.getAttribute('data-action');
-            if (action !== 'kali-reboot') {
+            
+            if (action === 'kali-about') {
+                // Open About Me window
+                const aboutWindow = document.getElementById('kali-about-window');
+                if (aboutWindow) {
+                    aboutWindow.style.display = 'block';
+                    centerWindow(aboutWindow);
+                    makeWindowDraggable(aboutWindow);
+                }
+            } else if (action !== 'kali-reboot') {
                 alert(`${action} will be implemented in Phase 2`);
             }
+            
             // Close menus after clicking
             if (kaliAppsMenu) kaliAppsMenu.style.display = 'none';
+        });
+    });
+
+    // Kali Window Controls
+    document.querySelectorAll('.kali-window .close').forEach(btn => {
+        btn.addEventListener('click', function() {
+            this.closest('.kali-window').style.display = 'none';
         });
     });
 
