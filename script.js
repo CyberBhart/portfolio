@@ -720,29 +720,61 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 100);
 
-    // Kali Sidebar Interactions
-    const kaliSwitchOS = document.querySelector('.kali-switch-os');
-    const kaliOsSubmenu = document.querySelector('.kali-os-submenu');
+    // Kali Dropdown Interactions
+    const kaliAppsDropdown = document.querySelector('.kali-apps-dropdown');
+    const kaliAppsBtn = document.querySelector('.kali-apps-btn');
+    const kaliAppsMenu = document.querySelector('.kali-apps-menu');
     
-    if (kaliSwitchOS && kaliOsSubmenu) {
-        kaliSwitchOS.addEventListener('click', () => {
-            const isVisible = kaliOsSubmenu.style.display === 'block';
-            kaliOsSubmenu.style.display = isVisible ? 'none' : 'block';
-        });
-        
-        document.querySelectorAll('.kali-submenu-option').forEach(option => {
-            option.addEventListener('click', () => {
-                const targetOS = option.getAttribute('data-switch');
-                switchOS(targetOS);
-            });
+    const kaliSwitchDropdown = document.querySelector('.kali-switch-dropdown');
+    const kaliSwitchBtn = document.querySelector('.kali-switch-btn');
+    const kaliSwitchMenu = document.querySelector('.kali-switch-menu');
+    
+    if (kaliAppsBtn && kaliAppsMenu) {
+        kaliAppsBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isVisible = kaliAppsMenu.style.display === 'block';
+            // Close other menus
+            if (kaliSwitchMenu) kaliSwitchMenu.style.display = 'none';
+            kaliAppsMenu.style.display = isVisible ? 'none' : 'block';
         });
     }
-
-    // Kali Reboot
-    document.querySelector('.kali-reboot')?.addEventListener('click', () => {
-        if (confirm('Reboot system?')) {
-            location.reload();
+    
+    if (kaliSwitchBtn && kaliSwitchMenu) {
+        kaliSwitchBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isVisible = kaliSwitchMenu.style.display === 'block';
+            // Close other menus
+            if (kaliAppsMenu) kaliAppsMenu.style.display = 'none';
+            kaliSwitchMenu.style.display = isVisible ? 'none' : 'block';
+        });
+    }
+    
+    // Close Kali menus when clicking outside
+    document.addEventListener('click', (e) => {
+        if (kaliAppsMenu && !kaliAppsDropdown?.contains(e.target)) {
+            kaliAppsMenu.style.display = 'none';
         }
+        if (kaliSwitchMenu && !kaliSwitchDropdown?.contains(e.target)) {
+            kaliSwitchMenu.style.display = 'none';
+        }
+    });
+    
+    // Kali Switch OS options
+    document.querySelectorAll('.kali-switch-option').forEach(option => {
+        option.addEventListener('click', () => {
+            const targetOS = option.getAttribute('data-switch');
+            switchOS(targetOS);
+            if (kaliSwitchMenu) kaliSwitchMenu.style.display = 'none';
+        });
+    });
+
+    // Kali Reboot (from Applications menu)
+    document.querySelectorAll('.kali-menu-option[data-action="kali-reboot"]').forEach(item => {
+        item.addEventListener('click', () => {
+            if (confirm('Reboot system?')) {
+                location.reload();
+            }
+        });
     });
 
     // Kali Time Update
@@ -760,36 +792,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    // Kali Menu Items (placeholders for Phase 2)
+    document.querySelectorAll('.kali-menu-option[data-action]').forEach(item => {
+        item.addEventListener('click', () => {
+            const action = item.getAttribute('data-action');
+            if (action !== 'kali-reboot') {
+                alert(`${action} will be implemented in Phase 2`);
+            }
+            // Close menus after clicking
+            if (kaliAppsMenu) kaliAppsMenu.style.display = 'none';
+        });
+    });
+
     // Update Kali time every second
     setInterval(updateKaliTime, 1000);
     updateKaliTime();
-
-    // Mobile Sidebar Toggle for Kali
-    const kaliAppsText = document.querySelector('.kali-apps-text');
-    const kaliSidebar = document.querySelector('.kali-sidebar');
-    
-    if (kaliAppsText && kaliSidebar && window.innerWidth < 768) {
-        kaliAppsText.addEventListener('click', () => {
-            kaliSidebar.classList.toggle('active');
-        });
-        
-        // Close sidebar when clicking outside on mobile
-        document.addEventListener('click', (e) => {
-            if (window.innerWidth < 768 && 
-                !kaliSidebar.contains(e.target) && 
-                !kaliAppsText.contains(e.target)) {
-                kaliSidebar.classList.remove('active');
-            }
-        });
-    }
-
-    // Kali Menu Items (placeholders for Phase 2)
-    document.querySelectorAll('.kali-menu-item[data-action]').forEach(item => {
-        item.addEventListener('click', () => {
-            const action = item.getAttribute('data-action');
-            alert(`${action} will be implemented in Phase 2`);
-        });
-    });
 
     console.log('%c Welcome to Bhart Verma\'s Portfolio! ', 'background: #06d6a0; color: #000; font-size: 20px; font-weight: bold; padding: 10px;');
     console.log('%c Cybersecurity Specialist | Ethical Hacker | Threat Hunter ', 'background: #000; color: #06d6a0; font-size: 14px; padding: 5px;');
